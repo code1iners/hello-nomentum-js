@@ -21,7 +21,6 @@ function setGreetings(username) {
 
 function checkLocalStorageIsEmpty() {
   const username = localStorage.getItem(USERNAME_KEY);
-  console.log(username);
   if (username) {
     loginForm.classList.add(HIDDEN_CLASS_NAME);
     setGreetings(username);
