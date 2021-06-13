@@ -19,6 +19,18 @@ function deleteTodo(event) {
   saveTodos();
 }
 
+function isTodosMaximum() {
+  const savedTodos = localStorage.getItem(TODOS_KEY);
+  if (savedTodos) {
+    todos = JSON.parse(savedTodos);
+    if (todos.length >= 15) {
+      alert("할 일 목록은 최대 15개 까지 입력할 수 있습니다.");
+      return true;
+    }
+  }
+  return false;
+}
+
 function addTodo(newTodo) {
   const li = document.createElement("li");
   const span = document.createElement("span");
@@ -29,11 +41,17 @@ function addTodo(newTodo) {
   li.appendChild(span);
   li.appendChild(button);
   li.id = newTodo.id;
+  li.classList.add("flex");
+  li.classList.add("justify-between");
+  li.classList.add("mt-1");
   todoList.appendChild(li);
 }
 
 function handleTodoSubmit(event) {
   event.preventDefault();
+  if (isTodosMaximum()) {
+    return;
+  }
   const newTodo = {
     id: Date.now(),
     text: todoInput.value,
@@ -52,5 +70,21 @@ function loadTodos() {
   }
 }
 
-loadTodos();
-todoForm.addEventListener("submit", handleTodoSubmit);
+function setTodosVisible() {
+  const user = localStorage.getItem("username");
+  if (user) {
+    todoForm.classList.remove("hidden");
+    todoList.classList.remove("hidden");
+  } else {
+    todoForm.classList.add("hidden");
+    todoList.classList.add("hidden");
+  }
+}
+
+function todoStart() {
+  setTodosVisible();
+  loadTodos();
+  todoForm.addEventListener("submit", handleTodoSubmit);
+}
+
+todoStart();

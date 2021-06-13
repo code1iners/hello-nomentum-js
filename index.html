@@ -4,32 +4,110 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <title>App</title>
   </head>
-  <body>
-    <h2 id="clock">00:00:00</h2>
-    <form id="login-form" class="hidden">
-      <input placeholder="What is your name?" type="text" />
-      <input value="Login" type="submit" />
-    </form>
-    <h1 id="greeting" class="hidden"></h1>
-    <form id="todo-form">
-      <input placeholder="Write a to do and Press Enter" type="text" />
-    </form>
-    <ul id="todo-list"></ul>
-    <div id="quote">
-      <span></span>
-      <span></span>
+  <body class="text-gray-300">
+    <!-- Background image -->
+    <script src="js/background.js"></script>
+
+    <!-- Main container -->
+    <div class="w-full h-screen relative">
+      <!-- Weather -->
+      <div id="weather" class="absolute top-2 right-4 text-xs cursor-default">
+        <span>-</span>
+        <span>-</span>
+      </div>
+
+      <!-- Contents -->
+      <div
+        class="
+          w-8/12
+          absolute
+          top-1/2
+          left-1/2
+          transform
+          -translate-x-1/2 -translate-y-1/2
+        "
+      >
+        <!-- Content 1 -->
+        <div class="flex flex-col items-center text-white">
+          <!-- Clock -->
+          <h2 id="clock" class="w text-8xl cursor-default">00:00:00</h2>
+
+          <!-- Login form -->
+          <div class="my-4">
+            <form id="login-form" class="hidden">
+              <input
+                class="
+                  bg-transparent
+                  border-b
+                  px-6
+                  py-2
+                  text-center text-3xl
+                  placeholder-gray-300
+                  outline-none
+                "
+                placeholder="What is your name?"
+                type="text"
+              />
+            </form>
+            <h1 id="greeting" class="text-4xl hidden cursor-default"></h1>
+          </div>
+        </div>
+
+        <!-- To do list -->
+        <div class="mt-2 flex flex-col items-center">
+          <form id="todo-form">
+            <input
+              class="
+                w-96
+                bg-transparent
+                border-b
+                outline-none
+                placeholder-gray-300
+                text-2xl
+                px-6
+                py-4
+                text-center
+              "
+              placeholder="Write a To Do and Press Enter"
+              type="text"
+              maxlength="25"
+            />
+          </form>
+          <ul id="todo-list" class="w-1/2 text-white mt-4"></ul>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div
+        id="quote"
+        class="
+          w-full
+          flex flex-col
+          items-center
+          absolute
+          bottom-4
+          left-1/2
+          transform
+          -translate-x-1/2
+          cursor-default
+        "
+      >
+        <span class="text-xs"></span>
+        <span class="text-sm mt-1"></span>
+      </div>
     </div>
-    <div id="weather">
-      <span></span>
-      <span></span>
-    </div>
+
+    <!-- Scripts -->
     <script src="js/greeting.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/quotes.js"></script>
-    <script src="js/background.js"></script>
     <script src="js/todo.js"></script>
     <script src="js/weather.js"></script>
   </body>
